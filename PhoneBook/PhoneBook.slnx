@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="../Domains/Domains.csproj" />
-  <Project Path="../Services1/Services1.csproj" />
+  <Project Path="../Services1/Services.csproj" />
   <Project Path="PhoneBook.csproj" />
 </Solution>

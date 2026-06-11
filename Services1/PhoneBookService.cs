@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PhoneBook.Services1
+namespace PhoneBook.Services
 {
     public class PhoneBookService
     {
