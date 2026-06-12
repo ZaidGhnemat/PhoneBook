@@ -35,6 +35,8 @@ namespace PhoneBook.Services
             {
                 if(person == null)
                     throw new ArgumentNullException(nameof(person), "Person cannot be null.");
+
+                person.Id = GenerateUniqueId();
                 _phoneBookEntries.Add(person);
             }
             catch (Exception)
@@ -86,6 +88,7 @@ namespace PhoneBook.Services
             {
                 var persons = _phoneBookEntries.Select(q => new Person
                 {
+                    Id = q.Id,
                     Name = q.Name,
                     PhoneNumber = q.PhoneNumber
                 }).ToList();
@@ -147,10 +150,15 @@ namespace PhoneBook.Services
                 .Where(q => selector(q).Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
-            if (!results.Any())
-                throw new KeyNotFoundException($"No entries found containing: {searchTerm}");
+            //if (!results.Any())
+            //    throw new KeyNotFoundException($"No entries found containing: {searchTerm}");
 
             return results;
+        }
+
+        private int GenerateUniqueId()
+        {
+            return _phoneBookEntries.Count > 0 ? _phoneBookEntries.Max(q => q.Id) + 1 : 1;
         }
 
         #endregion
